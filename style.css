@@ -1,0 +1,28 @@
+/* Streamlit'in ana butonunu daha havalı yapalım */
+.stButton>button {
+    border: 2px solid #33D4FF;
+    border-radius: 20px;
+    background-color: transparent;
+    color: #33D4FF;
+    transition: all 0.3s ease-in-out;
+    padding: 10px 25px;
+}
+
+.stButton>button:hover {
+    background-color: #33D4FF;
+    color: #0E1117; /* Koyu arkaplan rengi */
+    border-color: #33D4FF;
+    box-shadow: 0 0 15px #33D4FF;
+}
+
+/* Expander başlıklarını daha belirgin yapalım */
+.st-expander header {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #FAFAFA;
+}
+
+/* Metrik kartlarının etiketlerini daha okunaklı yapalım */
+.st-emotion-cache-1g6gooi {
+    color: rgba(250, 250, 250, 0.7);
+}

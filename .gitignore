@@ -1,4 +1,7 @@
 *.pyc
 *.pyo
 *.pyd
+
 __pycache__/
+venv/
+catboost_info

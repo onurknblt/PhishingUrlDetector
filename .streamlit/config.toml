@@ -1,0 +1,15 @@
+[theme]
+# Ana etkileşim rengi (butonlar, sliderlar vb.)
+primaryColor="#33D4FF"
+
+# Ana arkaplan rengi
+backgroundColor="#0E1117"
+
+# Yan menü, expander gibi ikincil arkaplanlar
+secondaryBackgroundColor="#262730"
+
+# Metin rengi
+textColor="#FAFAFA"
+
+# Kullanılabilecek fontlar: "sans serif", "serif", veya "monospace"
+font="sans serif"

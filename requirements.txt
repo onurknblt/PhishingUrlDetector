@@ -1,10 +1,19 @@
-beautifulsoup4
-Flask
-googlesearch-python
-numpy
-pandas
-python-dateutil
-requests
-scikit-learn
-whois
-gunicorn
+# Web Framework ve Sunum Katmanı
+Flask>=3.0.0              
+streamlit>=1.30.0         
+
+# WSGI Sunucusu (Production için)
+gunicorn>=22.0.0          
+
+# Makine Öğrenmesi ve Veri Bilimi
+scikit-learn>=1.5.0       
+pandas>=2.2.0             
+numpy>=1.26.4
+matplotlib
+seaborn
+xgboost       
+
+# Web İşlemleri ve Yardımcılar
+beautifulsoup4>=4.12.0    
+requests>=2.31.0          
+python-whois>=0.8
