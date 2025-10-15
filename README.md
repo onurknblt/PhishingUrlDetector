@@ -78,16 +78,6 @@ python-whois
 ```
 
 
-Python
-Flask
-Scikit-learn
-Pandas
-NumPy
-BeautifulSoup
-WHOIS
-```
-
-
 **📊 Model Sonuçları**
 
 Eğitim sırasında test edilen makine öğrenmesi algoritmaları:
