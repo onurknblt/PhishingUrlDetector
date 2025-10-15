@@ -38,6 +38,7 @@ streamlit run app.py
 
 ## Klasör yapısı 
 ```
+├── .streamlit (streamlit önyüz ayarları)
 ├── app.py (Uygulama (Streamlit/Flask giriş noktası)
 ├── feature.py (URL'den 30 özellik çıkaran sınıf)
 ├── model__training.ipynb (Model eğitimi ve analiz (Jupyter Notebook))
@@ -46,6 +47,7 @@ streamlit run app.py
 ├── requirements.txt (Proje bağımlılıkları)
 ├── README.md 
 ├── .gitignore (git için hariç tutulanlar)
+├── style.css (ön yüz stil dosyası)
 
 
 ```
