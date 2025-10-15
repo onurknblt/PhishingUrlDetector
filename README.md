@@ -12,7 +12,7 @@ Bu projede, makine öğrenmesi kullanılarak verilen bir URL’nin güvenli mi y
 
 **Projeyi bilgisayarınıza klonlayın:**
 ```
-git clone https://github.com/kullaniciadiniz/PhishingUrlDetector.git
+git clone https://github.com/onurknblt/PhishingUrlDetector.git
 cd PhishingUrlDetector
 ```
 
@@ -32,6 +32,7 @@ pip install -r requirements.txt
 ```
 streamlit run app.py
 ```
+
 
 
 
@@ -72,6 +73,16 @@ xgboost
 beautifulsoup4   
 requests        
 python-whois
+```
+
+
+Python
+Flask
+Scikit-learn
+Pandas
+NumPy
+BeautifulSoup
+WHOIS
 ```
 
 
