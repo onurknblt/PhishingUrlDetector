@@ -10,10 +10,11 @@ from datetime import date, datetime
 import time
 from dateutil.parser import parse as date_parse
 from urllib.parse import urlparse
+from tranco import Tranco
 
 class FeatureExtraction:
     features = []
-    def __init__(self,url):
+    def __init__(self, url):
         self.features = []
         self.url = url
         self.domain = ""
@@ -22,22 +23,33 @@ class FeatureExtraction:
         self.response = ""
         self.soup = ""
 
-        try:
-            self.response = requests.get(url)
-            self.soup = BeautifulSoup(self.response.text, 'html.parser')
-        except:
-            pass
-
+        # 1. ADIM: URL Ayrıştırma (Domain'i bulmak için önce bunu yapmalıyız)
         try:
             self.urlparse = urlparse(url)
             self.domain = self.urlparse.netloc
         except:
             pass
 
+        # 2. ADIM: Siteye İstek Atma (Kritik Düzeltme Burası)
         try:
+            # Kendimizi gerçek bir Chrome tarayıcısı gibi tanıtıyoruz
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+            }
+            # timeout=5 ekleyerek sitenin cevap vermesi için en fazla 5 saniye bekliyoruz (sonsuza kadar donmasın diye)
+            self.response = requests.get(url, headers=headers, timeout=5)
+            self.soup = BeautifulSoup(self.response.text, 'html.parser')
+        except:
+            pass
+
+        # 3. ADIM: Whois Sorgusu
+        try:
+            # Whois bazen çok yavaş olabilir, hata verirse pas geçiyoruz
             self.whois_response = whois.whois(self.domain)
         except:
             pass
+            
+        
 
 
         
@@ -313,7 +325,8 @@ class FeatureExtraction:
     # 17. InfoEmail
     def InfoEmail(self):
         try:
-            if re.findall(r"[mail\(\)|mailto:?]", self.soap):
+            # self.soap -> self.soup (veya self.response.text)
+            if re.findall(r"[mail\(\)|mailto:?]", self.response.text):
                 return -1
             else:
                 return 1
@@ -421,12 +434,21 @@ class FeatureExtraction:
     # 26. WebsiteTraffic   
     def WebsiteTraffic(self):
         try:
-            rank = BeautifulSoup(urllib.request.urlopen("http://data.alexa.com/data?cli=10&dat=s&url=" + self.url).read(), "xml").find("REACH")['RANK']
-            if (int(rank) < 100000):
-                return 1
-            return 0
-        except :
-            return -1
+            t = Tranco(cache=True, cache_dir='.tranco_cache')
+            # En son listeyi (örneğin son 30 günün) kullanıyoruz
+            latest_list = t.list() 
+            
+            # Sitenin domainini listede arıyoruz
+            # Eğer site ilk 100.000 içindeyse güvenilirdir (1)
+            rank = latest_list.rank(self.domain)
+            
+            if rank != -1 and rank < 100000:
+                return 1 # Güvenilir
+            else:
+                return 0 # Şüpheli/Trafik Düşük (Phishing olma ihtimali var ama kesin değil)
+                
+        except:
+            return 0 # Hata durumunda Nötr dönüyoruz
 
     # 27. PageRank
     def PageRank(self):
