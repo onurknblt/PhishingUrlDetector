@@ -30,7 +30,7 @@ class FeatureExtraction:
         except:
             pass
 
-        # 2. ADIM: Siteye İstek Atma (Kritik Düzeltme Burası)
+        # 2. ADIM: Siteye İstek Atma
         try:
             # Kendimizi gerçek bir Chrome tarayıcısı gibi tanıtıyoruz
             headers = {
